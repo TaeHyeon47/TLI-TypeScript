@@ -1,22 +1,32 @@
-function add(n1: number, n2: number, showResult: boolean, phrase: string) {
-  //   if (typeof n1 !== 'number' || typeof n2 !== 'number') {
-  //     throw new Error('Incorrect input!');
-  //   }
+// // TypeScript doesn't support any type of property because we don't tell it anything about the object.
+// const person: {
+//   name: string;
+//   age: number;
+// } = {
+const person: {
+  name: string;
+  age: number;
+  hobbies: string[];
+  role: [number, string]; // 튜플 타입
+} = {
+  name: 'Maximilian',
+  age: 30,
+  hobbies: ['Sports', 'Cooking'],
+  role: [2, 'author'],
+};
 
-  const result = n1 + n2;
-  if (showResult) {
-    // String과 number를 조합하였기 때문에 버그가 발생.
-    //  console.log(phrase + n1 + n2); // Result is : 52.8
+// person.role.push('admin'); //? 튜플에서 push가 가능 (예외 기억)
+// person.role[1] = 10;
+// person.role = [0, 'ggg', 'aaa'];
+console.log(person.role);
 
-    console.log(phrase + result); // Result is : 7.8
-  } else {
-    return result;
-  }
+let favoriteActivities: string[];
+// let favoriteActivities: any[];
+favoriteActivities = ['Sports'];
+
+console.log(person.name);
+
+for (const hobby of person.hobbies) {
+  console.log(hobby.toUpperCase());
+  //   console.log(hobby.map()); // ERROR
 }
-// 타입스크립트에서는 아래의 5와 5.0의 값이 동일하게 인식된다.
-const number1 = 5; // 5.0
-const number2 = 2.8;
-const printResult = true;
-const resultPhrase = 'Result is: ';
-
-add(number1, number2, printResult, resultPhrase, resultPhrase);
